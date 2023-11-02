@@ -1,35 +1,26 @@
-const todoList = [{
-  name:'make dinner',
-  duedate:'2022-12-22'
-},{
-  name:'wash dishes',
-  duedate:'2022-12-22'
-}];
+const todoList = []
 
-renderTodoList()
+renderTodoList();
 
 function renderTodoList() {
   let todoListHTML = "";
 
   todoList.forEach((todoObject, index)=> {
-    const {name, duedate} = todoObject
+    const {name, dueDate} = todoObject
     const html = `
     <div>${name}</div>
-    <div> ${duedate}</div>
-     <button onclick="
-        todoList.splice(${index},1);
-        renderTodoList()
-      "class="delete-todo-btn">Delete</button> 
+    <div> ${dueDate}</div>
+     <button class="delete-todo-btn js-todo-delete-btn">Delete</button> 
       `;
     todoListHTML += html;
-  })
+  });
   
   // for (let i = 0; i < todoList.length; i++) {
   //   const todoObject = todoList[i];
-  //   const {name, duedate} =todoObject
+  //   const {name, dueDate} =todoObject
   //   const html = `
   //   <div>${name}</div>
-  //   <div> ${duedate}</div>
+  //   <div> ${dueDate}</div>
   //    <button onclick="
   //       todoList.splice(${i},1);
   //       renderTodoList()
@@ -39,22 +30,19 @@ function renderTodoList() {
   // }
 
   document.querySelector(".js-todo-list").innerHTML = todoListHTML;
+  
 
-  // NOT WORKING
-  // document.querySelectorAll(".js-todo-delete-btn").forEach((deleteButton, index)=>{
-  //   deleteButton.addEventListener('click', ()=>{
-  //     todoList.splice(index,1);
-  //       renderTodoList()
-  //   });
-  // })
-  document.querySelector(".js-todo-delete-btn").addEventListener('click',()=>{
-    addTodo()
-  })
+ document.querySelectorAll('.js-todo-delete-btn')
+    .forEach((deleteButton, index) => {
+      deleteButton.addEventListener('click', () => {
+        todoList.splice(index, 1);
+        renderTodoList();
+      });
+    });
 }
 document.querySelector(".js-add-todo-btn").addEventListener('click',()=>{
-  todoList.splice(index,1);
-  renderTodoList()
-})
+  addTodo()
+});
 
 
 function addTodo() {
