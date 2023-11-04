@@ -15,6 +15,8 @@ function renderTodoList() {
     todoListHTML += html;
   });
 
+  localStorage.setItem('list', JSON.stringify(todoList))
+
   
   
   // for (let i = 0; i < todoList.length; i++) {
